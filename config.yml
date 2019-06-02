@@ -1,0 +1,336 @@
+version: '9'
+name: HashbangOS
+type: release
+variant: userdebug
+datetime: 1555835843
+host: android
+user: build
+platform:
+  ref: android-9.0.0_r37
+  extra_remotes:
+  - name: github
+    fetch: https://github.com
+    revision: refs/heads/pie
+  - name: gitlab
+    fetch: https://gitlab.com
+  extra_projects:
+  - name: stevesoltys/backup
+    groups: device
+    path: packages/apps/Backup
+    remote: github
+    revision: refs/heads/master
+  - name: GrapheneOS/platform_build
+    groups: pdk
+    path: build/make
+    remote: github
+    revision: refs/heads/pie
+    children:
+    - tag: copyfile
+      src: core/root.mk
+      dest: Makefile
+    - tag: linkfile
+      src: CleanSpec.mk
+      dest: build/CleanSpec.mk
+    - tag: linkfile
+      src: buildspec.mk.default
+      dest: build/buildspec.mk.default
+    - tag: linkfile
+      src: core
+      dest: build/core
+    - tag: linkfile
+      src: envsetup.sh
+      dest: build/envsetup.sh
+    - tag: linkfile
+      src: target
+      dest: build/target
+    - tag: linkfile
+      src: tools
+      dest: build/tools
+  - name: GrapheneOS/platform_art
+    groups: pdk
+    path: art
+    remote: github
+    revision: refs/heads/pie
+  - name: GrapheneOS/platform_bionic
+    groups: pdk
+    path: bionic
+    remote: github
+  - name: GrapheneOS/platform_bootable_recovery
+    groups: pdk
+    path: bootable/recovery
+    remote: github
+  - name: GrapheneOS/device_common
+    path: device/common
+    groups: pdk-cw-fs,pdk
+    remote: github
+  - name: GrapheneOS/device_google_crosshatch
+    path: device/google/crosshatch
+    groups: device,crosshatch
+    remote: github
+  - name: GrapheneOS/device_google_crosshatch-sepolicy
+    path: device/google/crosshatch-sepolicy
+    groups: device,crosshatch
+    remote: github
+  - name: GrapheneOS/device_google_marlin
+    path: device/google/marlin
+    groups: device,marlin,pdk
+    remote: github
+  - name: GrapheneOS/device_google_muskie
+    path: device/google/muskie
+    groups: device,muskie,pdk
+    remote: github
+  - name: GrapheneOS/device_google_taimen
+    path: device/google/taimen
+    groups: device,taimen,pdk
+    remote: github
+  - name: GrapheneOS/device_google_wahoo
+    path: device/google/wahoo
+    groups: device,wahoo,pdk
+    remote: github
+  - name: GrapheneOS/platform_external_Auditor
+    path: external/Auditor
+    remote: github
+  - name: GrapheneOS/platform_external_chromium
+    path: external/chromium
+    remote: github
+  - name: GrapheneOS/platform_external_conscrypt
+    path: external/conscrypt
+    groups: pdk
+    remote: github
+  - name: GrapheneOS/hardened_malloc
+    path: external/hardened_malloc
+    remote: github
+  - name: GrapheneOS/platform_frameworks_av
+    path: frameworks/av
+    groups: pdk
+    remote: github
+  - name: GrapheneOS/platform_frameworks_base
+    path: frameworks/base
+    groups: pdk-cw-fs,pdk-fs
+    remote: github
+  - name: GrapheneOS/platform_frameworks_native
+    path: frameworks/native
+    groups: pdk
+    remote: github
+  - name: GrapheneOS/platform_frameworks_opt_net_wifi
+    path: frameworks/opt/net/wifi
+    groups: pdk
+    remote: github
+  - name: GrapheneOS/kernel_configs
+    path: kernel/configs
+    groups: vts,pdk
+    remote: github
+  - name: GrapheneOS/kernel_google_crosshatch
+    path: kernel/google/crosshatch
+    remote: github
+  - name: GrapheneOS/kernel_google_marlin
+    path: kernel/google/marlin
+    remote: github
+  - name: GrapheneOS/kernel_google_wahoo
+    path: kernel/google/wahoo
+    remote: github
+  - name: GrapheneOS/platform_libcore
+    path: libcore
+    groups: pdk
+    remote: github
+  - name: GrapheneOS/platform_packages_apps_Bluetooth
+    path: packages/apps/Bluetooth
+    groups: pdk-cw-fs,pdk-fs
+    remote: github
+  - name: GrapheneOS/platform_packages_apps_Camera2
+    path: packages/apps/Camera2
+    groups: pdk-fs
+    remote: github
+  - name: GrapheneOS/platform_packages_apps_Contacts
+    path: packages/apps/Contacts
+    groups: pdk-fs
+    remote: github
+  - name: GrapheneOS/platform_packages_apps_ExactCalculator
+    path: packages/apps/ExactCalculator
+    groups: pdk-fs
+    remote: github
+  - name: GrapheneOS/platform_packages_apps_Launcher3
+    path: packages/apps/Launcher3
+    groups: pdk-fs
+    remote: github
+  - name: GrapheneOS/platform_packages_apps_Music
+    path: packages/apps/Music
+    groups: pdk-fs
+    remote: github
+  - name: GrapheneOS/platform_packages_apps_Nfc
+    path: packages/apps/Nfc
+    groups: pdk-fs
+    remote: github
+  - name: GrapheneOS/platform_packages_apps_PackageInstaller
+    path: packages/apps/PackageInstaller
+    groups: pdk-cw-fs,pdk-fs
+    remote: github
+  - name: GrapheneOS/platform_packages_apps_Settings
+    path: packages/apps/Settings
+    groups: pdk-fs
+    remote: github
+  - name: GrapheneOS/platform_packages_apps_Updater
+    path: packages/apps/Updater
+    remote: github
+  - name: GrapheneOS/platform_packages_inputmethods_LatinIME
+    path: packages/inputmethods/LatinIME
+    groups: pdk-fs
+    remote: github
+  - name: GrapheneOS/platform_packages_providers_DownloadProvider
+    path: packages/providers/DownloadProvider
+    groups: pdk-cw-fs,pdk-fs
+    remote: github
+  - name: GrapheneOS/platform_packages_services_Telephony
+    path: packages/services/Telephony
+    groups: pdk-cw-fs,pdk-fs
+    remote: github
+  - name: GrapheneOS/script
+    path: script
+    remote: github
+  - name: GrapheneOS/platform_system_bt
+    path: system/bt
+    groups: pdk
+    remote: github
+  - name: GrapheneOS/platform_system_core
+    path: system/core
+    groups: pdk
+    remote: github
+  - name: GrapheneOS/platform_system_extras
+    path: system/extras
+    groups: pdk
+    remote: github
+  - name: GrapheneOS/platform_system_netd
+    path: system/netd
+    groups: pdk
+    remote: github
+  - name: GrapheneOS/platform_system_sepolicy
+    path: system/sepolicy
+    groups: pdk
+    remote: github
+  - name: GrapheneOS/android-prepare-vendor
+    groups: device
+    path: vendor/android-prepare-vendor
+    remote: github
+  remove_paths:
+  - external/chromium-webview
+  - platform/prebuilts/qemu-kernel
+  - platform/developers/samples/android
+  - platform/developers/demos
+  - device/generic/car
+  - device/generic/qemu
+  - device/generic/goldfish
+  - device/generic/goldfish-opengl
+  - device/lenaro/bootloader/arm-trusted-firmware
+  - device/lenaro/bootloader/edk2
+  - device/lenaro/bootloader/OpenPlatformPkg
+  - device/lenaro/hikey
+  - device/lenaro/hikey-kernel
+  - device/lenaro/
+  - device/google/atv
+  - device/google/contexthub
+  - device/google/cuttlefish
+  - device/google/cuttlefish_kernel
+  - device/google/cuttlefish_sepolicy
+  - device/google/cuttlefish_common
+  - device/google/crosshatch-kernel
+  - device/google/wahoo-kernel
+  - device/google/marlin-kernel
+  - device/google/muskie
+  - device/generic/mips
+  - device/google/hikey-kernel
+  - device/generic/mips64
+  - device/generic/mini-emulator-arm64
+  - device/generic/mini-emulator-armv7-a-neon
+  - device/generic/mini-emulator-mips
+  - device/generic/mini-emulator-mips64
+  - device/generic/mini-emulator-x86
+  - device/generic/mini-emulator-x86_64
+  - device/google/accessory/arduino
+  - device/google/accessory/demokit
+  remove_groups:
+  - darwin
+  patches: []
+apps:
+  chromium:
+    version: 76.0.3772.1
+    src_ref: 81a47ce765daab7199c94a0237dc5b86c49ec5e2
+    depot_tools_ref: 8dfc0bce4ac7aeb9b03f0783fe0a22660ea4d796
+devices:
+  crosshatch:
+    global:
+      kernel_name: crosshatch
+      kernel_ref: origin/android-msm-crosshatch-4.9-pie-qpr2
+      kernel_repo: kernel/manifest
+      avb_mode: vbmeta_chained
+      factory_build: PQ3A.190505.002
+      factory_hash: 99879eba8020ad35c69a90f3b3d4443e857283d51deec33cd644da5c645e5f5a
+    verizon:
+      factory_hash: 7e9da376a846c934eb3b4ca39833996ee453c3ad67bb23a365ba09862c286d03
+      factory_build: PD1A.180720.031
+    docomo:
+      factory_build: PQ1A.181205.006.A1
+      factory_hash: 99bead334525f4d26ef5777ebc910648674597e1322a2a95e9e2d4f9df5d69cf
+  blueline:
+    global:
+      kernel_name: crosshatch
+      kernel_ref: origin/android-msm-crosshatch-4.9-pie-qpr2
+      kernel_repo: kernel/manifest
+      avb_mode: vbmeta_chained
+      factory_build: PQ3A.190505.002
+      factory_hash: 26d2002511d6a13fc523334b7f783dd757edd543179c7a5dc2f7e1d322efc6e3
+    verizon:
+      factory_build: PD1A.180720.031
+      factory_hash: 3df41a2b65335bb6c130f36b0bbd87c3f90822b7ef04f210232daacc3693142a
+    docomo:
+      factory_build: PQ1A.181205.006.A1
+      factory_hash: e0442d3b0a9e5636f4979b5780b6173635fe73917e88ffe1b9d36c2bc45aa7bc
+  taimen:
+    global:
+      kernel_name: wahoo
+      kernel_ref: android-msm-wahoo-4.4-pie-qpr1
+      kernel_repo: kernel/msm
+      avb_mode: vbmeta_simple
+      factory_build: PQ3A.190505.001
+      factory_hash: f91e5af8dd8675c737b78b03c60143c14e78155d1561115a9ec1a5e3a6aacc58
+    telstra:
+      factory_build: PPR1.180610.011
+      factory_hash: 9f0cb004c3b42789c150293aa6a6eecb0f289324ce1403befde93b106da59829
+  walleye:
+    global:
+      kernel_name: wahoo
+      kernel_ref: android-msm-wahoo-4.4-pie-qpr1
+      kernel_repo: kernel/msm
+      avb_mode: vbmeta_simple
+      factory_build: PQ3A.190505.001
+      factory_hash: d2730d9cd155ada199c7c9d90eebb4e43cc7e2702f6853e59e2f79d4be6be291
+    telstra:
+      factory_build: PPR1.180610.011
+      factory_hash: 0fbd304845b6a1e8c5960deedb70aab0f804a4b1bb93242b3bbcdad586982769
+  marlin:
+    global:
+      kernel_name: marlin
+      kernel_ref: android-msm-marlin-3.18-pie-qpr1-s2
+      kernel_repo: kernel/msm
+      avb_mode: verity_only
+      factory_build: PQ3A.190505.001
+      factory_hash: 5dac573cedb98a1c8b8e9cf0bf87710e9f0d32a4290ed2339412fdc437fca331
+    telus:
+      factory_build: PPR1.181005.003.A1
+      factory_hash: 960a173f0f84e2c3c0c5d96643e6ca3f99d5a898a932c6e3a62c52282d6fb3f4
+    verizon:
+      factory_build: PPR2.180905.006.A1
+      factory_hash: a78fe26434e04f8d5015bab79f717fc7b03b13286370b079b7e96d1f7562512a
+  sailfish:
+    global:
+      kernel_name: marlin
+      kernel_ref: android-msm-marlin-3.18-pie-qpr1-s2
+      kernel_repo: kernel/msm
+      avb_mode: verity_only
+      factory_build: PQ3A.190505.001
+      factory_hash: f3d2032d0862961a1712445226f942f7f430851fbbac045b724cffafaa5c6e83
+    telus:
+      factory_build: PPR1.181005.003.A1
+      factory_hash: 6a2c3b69a43f93e576f953d7c8368648bd26f7d23667556a65af40282a72f7af
+    verizon:
+      factory_build: PPR2.180905.006.A1
+      factory_hash: b063909b211beea28e6879a12db1dade1eb4c007900082c10ea160f15c6feae7
